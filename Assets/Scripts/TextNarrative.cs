@@ -5,9 +5,12 @@ using TMPro;
 
 public class TextNarrative : MonoBehaviour
 {
+    
     [SerializeField]
     private TextMeshProUGUI Narrativedisplay;
+   
     [SerializeField]
+    [TextArea(3, 10)]
     private string[] Narrative;
     [SerializeField]
     private string[] negativeNarrative;
@@ -18,8 +21,8 @@ public class TextNarrative : MonoBehaviour
 
     private int index;
     public float typingSpeed;
-    // Start is called before the first frame update
-    void Start()
+    
+    public void BeginNarrative()
     {
         StartCoroutine(Type());
     }
@@ -35,12 +38,16 @@ public class TextNarrative : MonoBehaviour
     }
     IEnumerator Type()
     {
-        foreach (char letter in Narrative[index].ToCharArray())
-        {
-            Narrativedisplay.text += letter;
-            yield return new WaitForSeconds(typingSpeed);
+        
+        
+            foreach (char letter in Narrative[index].ToCharArray())
+            {
+                Narrativedisplay.text += letter;
+                yield return new WaitForSeconds(typingSpeed);
 
-        }
+            }
+        
+        
     }
     public void NextNarrative()
     {
